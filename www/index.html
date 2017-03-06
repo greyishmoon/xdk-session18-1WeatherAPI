@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head data-noxhrfix>
+    <title>Blank Cordova Mobile App Project Template (Lite)</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <!-- Include JQuery + JQuery mobile CDN (see xdk-BLANK-TEMPLATE for local library setup) -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <!-- Ractive CDN -->
+    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+    
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    
+    <script src="xhr.js"></script>
+    
+</head>
+
+<body>
+
+    <div data-role="page" id="feedPage">
+      
+   		<div data-role="header">
+        	<h1>My Feed</h1>
+      	</div>
+      
+      	<div data-role="content">
+            
+            <form>
+
+            <!-- Labels for location and date -->
+            <label id="labelLocation">Processing...</label>
+            <label id="labelDate"></label>
+                <!-- TEST image structure - used to construct template-->
+                <!-- <img src="https://www.metaweather.com/static/img/weather/lr.svg" width="30px;" />-->
+
+
+                <!-- RACTIVE binding location - where to display data - a ListView -->
+                <ul data-role="listview" id='container' data-inset="true">
+                </ul>
+                
+            <label id="labelTest"></label>
+                
+            </form>
+            
+        </div>
+    
+	</div>
+
+    <!--Ractive template - how to display data-->
+    <script id='myTemplate' type='text/ractive'>
+	
+        {{#weather}}
+        
+			<li>
+                <img src="https://www.metaweather.com/static/img/weather/{{weather_state_abbr}}.svg" width="30px;" />
+                 : 
+                {{weather_state_name}}
+                
+            </li>
+            
+        {{/weather}}
+
+    </script>
+    
+</body>
+</html>
